@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Malay ko</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="bg"></div>
+
+    <div class="lyrics">
+        <div class="line">Sa pag pikit ng aking mata</div>
+        <div class="line">Ikaw pa rin ang nakikita</div>
+        <div class="line">Ang yakap mo</div>
+        <div class="line">Hanap ko sa t'wina</div>
+        <div class="line">Ako'y nagtataka naiiba</div>
+        <div class="line">Ang aking nadarama</div>
+        <div class="line">Buhay ko'y nagkagulo</div>
+        <div class="line">Mula nang ika'y iwanan ko.</div>
+    </div>
+
+    <script>
+        const lines = document.querySelectorAll(".line");
+
+        const timings = [
+            6500,
+            6200,
+            3000,
+            6000,
+            7700,
+            6000,
+            6900,
+            6000
+        ];
+
+        let index = 0;
+
+        function showLine() {
+            // Remove 'active' class from all lines to hide them
+            lines.forEach(line => line.classList.remove("active"));
+
+            if (index < lines.length) {
+                // Show the current line
+                lines[index].classList.add("active");
+
+                // Wait for the specific duration before showing the next line
+                setTimeout(() => {
+                    index++;
+                    showLine();
+                }, timings[index]);
+            } else {
+                // Loop back to the beginning after a 1-second delay
+                index = 0;
+                setTimeout(showLine, 1000);
+            }
+        }
+
+        // Start the lyric animation
+        showLine();
+    </script>
+</body>
+</html>
