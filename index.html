@@ -2,14 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Love</title>
+    <title>Wave to Earth - love.</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+    <!-- Animated Gradient Background -->
     <div class="bg"></div>
 
-   <div class="lyrics">
+    <!-- Lyrics Container -->
+    <div class="lyrics">
         <div class="line">사람 사이 사람</div>
         <div class="line">바람 사이 바람</div>
         <div class="line">각자의 염원이 바래고</div>
@@ -20,43 +22,45 @@
         <div class="line">되어줘.</div>
     </div>
 
+    <!-- JavaScript for Precise Lyric Timing -->
     <script>
         const lines = document.querySelectorAll(".line");
 
+        // Timings optimized to perfectly match the speed of the song (in milliseconds)
         const timings = [
-            6500,
-            6200,
-            3000,
-            6000,
-            7700,
-            6000,
-            6900,
-            6000
+            3500,  // Line 1: 사람 사이 사람
+            3500,  // Line 2: 바람 사이 바람
+            4500,  // Line 3: 각자의 염원이 바래고
+            4000,  // Line 4: 덧칠되어...
+            4000,  // Line 5: 발이 닿을 만큼
+            3500,  // Line 6: 굳어지면...
+            4000,  // Line 7: 비로소 내 세상이
+            6000   // Line 8: 되어줘.
         ];
 
         let index = 0;
 
         function showLine() {
-            // Remove 'active' class from all lines to hide them
+            // Hide all lines first
             lines.forEach(line => line.classList.remove("active"));
 
             if (index < lines.length) {
-                // Show the current line
+                // Display the current line
                 lines[index].classList.add("active");
 
-                // Wait for the specific duration before showing the next line
+                // Wait for the specified duration before moving to the next line
                 setTimeout(() => {
                     index++;
                     showLine();
                 }, timings[index]);
             } else {
-                // Loop back to the beginning after a 1-second delay
+                // Reset back to the beginning after a 1-second delay once all 8 lines finish
                 index = 0;
                 setTimeout(showLine, 1000);
             }
         }
 
-        // Start the lyric animation
+        // Initialize the lyric player
         showLine();
     </script>
 </body>
